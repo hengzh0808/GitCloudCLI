@@ -5,21 +5,21 @@ require "gitcloudcli/command/space"
 module Gitcloudcli
   # 命令行入口
   class Cli < Thor
-    # def list(space)
+    def list(space)
 
-    # end
+    end
 
-    # def upload(space, path)
+    def upload(space, path)
 
-    # end
+    end
 
-    # def delete(space, filename)
+    def delete(space, filename)
 
-    # end
+    end
 
-    # def url(space, filename)
+    def url(space, filename)
 
-    # end
+    end
 
     desc "space [COMMAND]", "增加，删除，列出当前可操作的Git空间"
     subcommand "space", CloudCommand::CloudSpace

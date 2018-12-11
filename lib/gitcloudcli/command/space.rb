@@ -1,45 +1,40 @@
 require "thor"
-require "yaml"
-require "pp"
-module CloudCommand
-    def configFile(mode="r")
-        yaml_dir = Dir.home + "/.gitcloud"
-        yaml_name = "gitcloud.yaml"
-        if !Dir.exist?(yaml_dir)
-            Dir.mkdir(yaml_dir)
-        end
-        file = File.open(yaml_dir + "/#{yaml_name}", mode)
-    end
-    module_function :configFile
+require "gitcloudcli/command/config"
 
+module Gitcloudcli
     # 空间操作
     class CloudSpace < Thor
-        desc "space list", "列出当前的Git空间"
+        desc "list", "列出当前的Git空间"
         def list
-            file = CloudCommand.configFile
-            configs = YAML.load(file)
+            configs = Gitcloudcli.configHash
             configs.each do |key|
                 puts "#{key[0]}  #{key[1]["remote"]}"
             end
         end
 
-        desc "space add NAME URL", "添加Git空间"
+        desc "add NAME URL TOKEN", "添加Git空间"
         def add(name, url, token)
-            file = CloudCommand.configFile("r+")
-            configs = YAML.load(file)
+            configs = Gitcloudcli.configHash
+            if configs[name]
+                puts "#{name} 已经存在"
+                return
+            end
             configs[name] = {
                 "remote"=>url,
                 "token"=>token
             }
-            YAML.dump(configs, file)
+            Gitcloudcli.configCover(configs)
         end
 
-        desc "space remove NAME", "删除Git空间"
+        desc "remove NAME", "删除Git空间"
         def remove(name)
-            file = CloudCommand.configFile("w+")
-            configs = YAML.load(file)
+            configs = Gitcloudcli.configHash
+            if !configs[name]
+                puts "#{name} 不存在"
+                return
+            end
             configs.delete(name)
-            YAML.dump(configs, file)
+            Gitcloudcli.configCover(configs)
         end
     end
 end

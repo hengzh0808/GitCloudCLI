@@ -1,3 +1,12 @@
 #!/usr/bin/env ruby
-require "gitcloudcli"
-Gitcloudcli::Cli.start(ARGV)
+# require "gitcloudcli"
+# Gitcloudcli::Cli.start(ARGV)
+
+require "gitcloudcli/command/space"
+require "gitcloudcli/command/git/github"
+
+# Gitcloudcli::CloudSpace.new().add("github", "www.github.com", "123456")
+# Gitcloudcli::CloudSpace.new().list
+
+git = Gitcloudcli::Github.new("https://github.com/monkeyheng/CloudFiles.git", "f4cc6d5e9ca9bc75c60f34966a0d2e42c18d56e2")
+git.list
