@@ -1,16 +1,15 @@
 #!/usr/bin/env ruby
-# require "gitcloudcli"
-# Gitcloudcli::Cli.start(ARGV)
+require "gitcloudcli"
+Gitcloudcli::Cli.start(ARGV)
 
-require "gitcloudcli/command/space"
-require "gitcloudcli/command/git/github"
-
-# Gitcloudcli::CloudSpace.new().add("github", "www.github.com", "123456")
-# Gitcloudcli::CloudSpace.new().list
-
-git = Gitcloudcli::Github.new("https://github.com/monkeyheng/CloudFiles.git", "f4cc6d5e9ca9bc75c60f34966a0d2e42c18d56e2")
-# git.list
-# puts "~~~~~~~~~~~~~~~~~~~~~~~~~~~"
-# git.url("屏幕快照 2018-12-10 下午7.12.49.png")
-git.upload("/Users/zhangheng/Desktop/test.text")
-# git.delete ""
+# require "gitcloudcli/command/space"
+# require "gitcloudcli/command/git/github"
+#
+# # Gitcloudcli::CloudSpace.new().add("github", "www.github.com", "123456")
+# # Gitcloudcli::CloudSpace.new().list
+#
+# git = Gitcloudcli::Github.new("https://github.com/monkeyheng/CloudFiles.git", "ed3ff7d3339645f96ff65cc9bba00c7654c426c1")
+# # git.list
+# # git.info( "test1.text")
+# git.upload("/Users/zhangheng/Desktop/屏幕快照 2018-09-07 下午2.16.02.png111", "image.png")
+# # git.delete "屏幕快照 2018-09-07 下午2.16.02.png"

@@ -1,27 +1,40 @@
 require "gitcloudcli/version"
-require "thor"
 require "gitcloudcli/command/space"
+require "gitcloudcli/command/config"
+require "thor"
 
 module Gitcloudcli
   # 命令行入口
   class Cli < Thor
-    def list(space)
-
+    desc "list", "list"
+    def list
+      Gitcloudcli.gitadapter(nil) do |git|
+        git.list
+      end
     end
 
-    def upload(space, path)
-
+    desc "upload", "upload"
+    def upload(path, filename=nil, message=nil)
+      Gitcloudcli.gitadapter(nil) do |git|
+        git.upload(path, filename, message)
+      end
     end
 
-    def delete(space, filename)
-
+    desc "delete", "delete"
+    def delete(remote_path)
+      Gitcloudcli.gitadapter(nil) do |git|
+        git.delete(remote_path)
+      end
     end
 
-    def url(space, filename)
-
+    desc "info", "info"
+    def info(remote_path)
+      Gitcloudcli.gitadapter(nil) do |git|
+        git.info(remote_path)
+      end
     end
 
     desc "space [COMMAND]", "增加，删除，列出当前可操作的Git空间"
-    subcommand "space", CloudCommand::CloudSpace
+    subcommand "space", Gitcloudcli::CloudSpace
   end
 end
