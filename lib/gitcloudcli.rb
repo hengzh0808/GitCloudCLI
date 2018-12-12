@@ -6,17 +6,28 @@ require "thor"
 module Gitcloudcli
   # 命令行入口
   class Cli < Thor
-    desc "list", "list"
+    desc "list", "展示远端根目录所有文件信息"
+    option :infos, :desc=>"输出入的文件信息关键字", :type=>:array
     def list
       Gitcloudcli.gitadapter(nil) do |git|
-        git.list
+        git.list(options[:infos])
       end
     end
 
-    desc "upload", "upload"
-    def upload(path, filename=nil, message=nil)
+    desc "info", "展示远端文件信息"
+    option :infos, :desc=>"输出入的文件信息关键字", :type=>:array
+    def info(remote_path)
       Gitcloudcli.gitadapter(nil) do |git|
-        git.upload(path, filename, message)
+        git.info(remote_path, options[:infos])
+      end
+    end
+
+    desc "upload PATH", "upload"
+    option :filename, :desc=>"自定义远端文件名"
+    option :message, :desc=>"上传信息"
+    def upload(path)
+      Gitcloudcli.gitadapter(nil) do |git|
+        git.upload(path, options[:filename], options[:message])
       end
     end
 
@@ -24,13 +35,6 @@ module Gitcloudcli
     def delete(remote_path)
       Gitcloudcli.gitadapter(nil) do |git|
         git.delete(remote_path)
-      end
-    end
-
-    desc "info", "info"
-    def info(remote_path)
-      Gitcloudcli.gitadapter(nil) do |git|
-        git.info(remote_path)
       end
     end
 

@@ -13,7 +13,7 @@ module Gitcloudcli
       @token=token
     end
 
-    def list
+    def list(infos=[])
       response = request(:GET, "https://api.github.com/repos/#{@username}/#{@repo}/contents", nil, nil, nil)
       result = JSON.parse(response.body)
       if block_given?
@@ -25,10 +25,14 @@ module Gitcloudcli
       end
     end
 
-    def info(remote_path)
+    def info(remote_path, infos=[])
       response = request(:GET, "https://api.github.com/repos/#{@username}/#{@repo}/contents/#{remote_path}",nil, nil, nil)
-      result = JSON.parse(response.body)
-      puts "#{result["name"]}   #{result["download_url"]}"
+      if response.code=="200"
+        result = JSON.parse(response.body)
+        puts "#{result["name"]}   #{result["download_url"]}"
+      else
+        puts "失败 #{response.body}"
+      end
     end
 
     def upload(local_path, filename=nil, message=nil)
@@ -48,10 +52,13 @@ module Gitcloudcli
       }
 
       response = request(:PUT, "https://api.github.com/repos/#{@username}/#{@repo}/contents/#{filename}?access_token=#{@token}", {"Content-Type" => "text/json"}, nil ,paramters.to_json)
-      result = JSON.parse(response.body)
-      puts "上传成功：#{filename} #{local_path}"
-      puts "download_url:#{result["content"]["download_url"]}"
-      puts "sha:#{result["content"]["sha"]}"
+      if response.code=="201"
+        puts "上传成功：#{filename} #{local_path}"
+        puts "download_url:#{result["content"]["download_url"]}"
+        puts "sha:#{result["content"]["sha"]}"
+      else
+        puts "上传失败 #{response.body}"
+      end
     end
 
     def delete(remote_path)
