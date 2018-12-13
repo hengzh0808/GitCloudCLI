@@ -1,26 +1,29 @@
 # Gitcloudcli
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/gitcloudcli`. To experiment with that code, run `bin/console` for an interactive prompt.
-
-TODO: Delete this and the text above, and describe your gem
+Use Gitcloudcli to operate files in git
 
 ## Installation
-
-Add this line to your application's Gemfile:
-
-```ruby
-gem 'gitcloudcli'
-```
-
-And then execute:
-
-    $ bundle
-
-Or install it yourself as:
 
     $ gem install gitcloudcli
 
 ## Usage
+
+First. Create access token for command line 
+##### Github
+[click here](https://help.github.com/articles/creating-a-personal-access-token-for-the-command-line/)
+##### Gitee(oschina)
+gitcloudcli will support 
+in future
+##### Gitlab
+gitcloudcli will support 
+in future
+
+Second. Add token, repo and spacename to gitcloud
+```cassandraql
+gitcloud space add Github *****.git ****c958
+```
+
+Third. Use gitcloud to use this tool
 ```cassandraql
 Commands:
   gitcloud --version, -v     # print the version
@@ -31,21 +34,3 @@ Commands:
   gitcloud space [COMMAND]   # 增加，删除，列出当前可操作的Git空间
   gitcloud upload LOCALPATH  # 上传本地文件
 ```
-
-## Development
-
-After checking out the repo, run `bin/setup` to install dependencies. You can also run `bin/console` for an interactive prompt that will allow you to experiment.
-
-To install this gem onto your local machine, run `bundle exec rake install`. To release a new version, update the version number in `version.rb`, and then run `bundle exec rake release`, which will create a git tag for the version, push git commits and tags, and push the `.gem` file to [rubygems.org](https://rubygems.org).
-
-## Contributing
-
-Bug reports and pull requests are welcome on GitHub at https://github.com/[USERNAME]/gitcloudcli. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [Contributor Covenant](http://contributor-covenant.org) code of conduct.
-
-## License
-
-The gem is available as open source under the terms of the [MIT License](https://opensource.org/licenses/MIT).
-
-## Code of Conduct
-
-Everyone interacting in the Gitcloudcli project’s codebases, issue trackers, chat rooms and mailing lists is expected to follow the [code of conduct](https://github.com/[USERNAME]/gitcloudcli/blob/master/CODE_OF_CONDUCT.md).
