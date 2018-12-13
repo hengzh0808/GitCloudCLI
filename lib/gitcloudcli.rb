@@ -1,6 +1,7 @@
 require "gitcloudcli/version"
 require "gitcloudcli/command/space"
 require "gitcloudcli/command/config"
+require "gitcloudcli/version"
 require "thor"
 
 module Gitcloudcli
@@ -43,6 +44,12 @@ module Gitcloudcli
       Gitcloudcli.gitadapter(options[:space]) do |git|
         git.delete(path, options[:message])
       end
+    end
+
+    map %w[--version -v] => :__print_version
+    desc "--version, -v", "print the version"
+    def __print_version
+      puts Gitcloudcli::VERSION
     end
 
     desc "space [COMMAND]", "增加，删除，列出当前可操作的Git空间"
