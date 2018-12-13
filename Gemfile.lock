@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    gitcloudcli (1.0.3)
+    gitcloudcli (1.0.4)
       thor
 
 GEM

@@ -5,10 +5,14 @@ module Gitcloudcli
   def configFile(model="r")
     yaml_dir = Dir.home + "/.gitcloud"
     yaml_name = "gitcloud.yaml"
+    yaml_path = yaml_dir + "/#{yaml_name}"
     if !Dir.exist?(yaml_dir)
       Dir.mkdir(yaml_dir)
     end
-    file = File.open(yaml_dir + "/#{yaml_name}", model)
+    if !File.exist? yaml_path
+      File.open(yaml_path, 'w').close
+    end
+    file = File.open(yaml_path, model)
   end
 
   def configHash
