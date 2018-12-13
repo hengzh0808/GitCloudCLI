@@ -3,7 +3,7 @@ require "gitcloudcli/command/git/github"
 
 module Gitcloudcli
   def configFile(model="r")
-    yaml_dir = Dir.home + "/.gitcloud"
+    yaml_dir = Dir.home + "/.gitcloudcli"
     yaml_name = "gitcloud.yaml"
     yaml_path = yaml_dir + "/#{yaml_name}"
     if !Dir.exist?(yaml_dir)
@@ -39,6 +39,7 @@ module Gitcloudcli
         if key==space
           remote = value["remote"]
           token = value["token"]
+          space = key
           break
         end
       else
@@ -53,10 +54,10 @@ module Gitcloudcli
       if remote.to_s.include? "github.com"
         yield Gitcloudcli::Github.new(remote, token)
       else
-        puts "#{remote} 不支持"
+        puts "#{space} #{remote} 不支持"
       end
     else
-      puts "#{space} 不不存在"
+      puts "未找到空间"
     end
   end
 
