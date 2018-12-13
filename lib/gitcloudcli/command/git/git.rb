@@ -3,13 +3,13 @@ require "net/http"
 module Gitcloudcli
   class Git
 
-    def list(infos=[]) end
+    def list(dir=nil, infos=[]) end
 
     def info(remote_path, infos=[]) end
 
-    def delete(remote_path) end
+    def upload(local_path, filename=nil, message=nil, infos=[]) end
 
-    def upload(local_path, filename=nil, message=nil) end
+    def delete(remote_path, message=nil) end
 
     def request(method, urlStr, header, formdata, body)
       if urlStr
