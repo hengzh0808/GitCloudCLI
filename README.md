@@ -21,8 +21,16 @@ Or install it yourself as:
     $ gem install gitcloudcli
 
 ## Usage
-
-TODO: Write usage instructions here
+```cassandraql
+Commands:
+  gitcloud --version, -v     # print the version
+  gitcloud delete PATH       # 删除远端文件
+  gitcloud help [COMMAND]    # Describe available commands or one specific command
+  gitcloud info PATH         # 展示远端文件信息
+  gitcloud list              # 展示远端根目录所有文件信息
+  gitcloud space [COMMAND]   # 增加，删除，列出当前可操作的Git空间
+  gitcloud upload LOCALPATH  # 上传本地文件
+```
 
 ## Development
 
