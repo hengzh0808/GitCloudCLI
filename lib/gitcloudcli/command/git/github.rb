@@ -6,10 +6,9 @@ require "net/http"
 module Gitcloudcli
   class Github < Git
     def initialize(url, token)
-      uri = URI::parse(url)
-      result = uri.path.to_s.split("/")
-      @username=result[1]
-      @repo=result[2].to_s.split(".")[0]
+      result = url.to_s.split /:|\//
+      @repo=result.pop.to_s.split(".").first
+      @username=result.pop
       @token=token
     end
 
