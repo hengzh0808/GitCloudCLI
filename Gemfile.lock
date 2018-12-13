@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    gitcloudcli (0.1.0)
+    gitcloudcli (1.0.0)
       rest-client
       thor
 
