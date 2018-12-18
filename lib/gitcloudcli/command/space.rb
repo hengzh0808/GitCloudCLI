@@ -4,7 +4,7 @@ require "gitcloudcli/command/config"
 module Gitcloudcli
     # 空间操作
     class CloudSpace < Thor
-        desc "list", "列出当前的Git空间"
+        desc "list", "show current git spaces"
         def list
             configs = Gitcloudcli.configHash
             configs.each do |key|
@@ -12,11 +12,11 @@ module Gitcloudcli
             end
         end
 
-        desc "add NAME URL TOKEN", "添加Git空间"
+        desc "add NAME URL TOKEN", "add git space"
         def add(name, url, token)
             configs = Gitcloudcli.configHash
             if configs[name]
-                puts "#{name} 已经存在"
+                puts "#{name} existed"
                 return
             end
             configs[name] = {
@@ -26,11 +26,11 @@ module Gitcloudcli
             Gitcloudcli.configCover(configs)
         end
 
-        desc "remove NAME", "删除Git空间"
+        desc "remove NAME", "delete git space"
         def remove(name)
             configs = Gitcloudcli.configHash
             if !configs[name]
-                puts "#{name} 不存在"
+                puts "#{name} does not exist"
                 return
             end
             configs.delete(name)

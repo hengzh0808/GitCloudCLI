@@ -43,7 +43,7 @@ module Gitcloudcli
           break
         end
       else
-        puts "space为空，默认使用#{key}"
+        puts "SPACE is null，use default #{key}"
         remote = value["remote"]
         token = value["token"]
         break
@@ -54,10 +54,10 @@ module Gitcloudcli
       if remote.to_s.include? "github.com"
         yield Gitcloudcli::Github.new(remote, token)
       else
-        puts "#{space} #{remote} 不支持"
+        puts "#{space} #{remote} not supported"
       end
     else
-      puts "未找到空间"
+      puts "git space is empty"
     end
   end
 

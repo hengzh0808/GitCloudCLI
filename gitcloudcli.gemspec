@@ -9,8 +9,8 @@ Gem::Specification.new do |spec|
   spec.authors       = ["zhangheng"]
   spec.email         = ["onethousandpiece@126.com"]
 
-  spec.summary       = "Git场库文件操作"
-  spec.description   = "Git场库文件操作。增删改查操作"
+  spec.summary       = "git repo's cli"
+  spec.description   = "git repo's cli that can create, delete files and other operations"
   spec.homepage      = "https://github.com/monkeyheng/GitCloudCLI"
   spec.license       = "MIT"
 
